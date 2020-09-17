@@ -18,7 +18,6 @@ include 'connection.php';
       $_SESSION['username'] = $row['user_name'];
       $_SESSION['user_bio']=$row['bio'];
       $_SESSION['user_url']=$row['url'];
-      
       header("location: home.php");
     }
     else
@@ -32,9 +31,8 @@ include 'connection.php';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Login - Register Template">
-    <meta name="author" content="Lorenzo Angelino aka MrLolok">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Social Media</title>
     <link
@@ -91,8 +89,7 @@ include 'connection.php';
         </div>
     </div>
         </div>  
-      
-         
+
         <div class="right">
           <img class="phone" src="images/Untitled.svg" alt="" />
         </div>

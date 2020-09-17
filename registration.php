@@ -66,8 +66,7 @@ if (isset($_POST['register'])) {
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <meta name="description" content="Login - Register Template">
-    <meta name="author" content="Lorenzo Angelino aka MrLolok">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="register.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -92,7 +91,7 @@ if (isset($_POST['register'])) {
                 <div class="input-addon">
                     <i class="material-icons">email</i>
                 </div>
-                <input id="email" placeholder="Email" name="email" type="email"  class="validate" autocomplete="off" required>
+`                       <input id="email" placeholder="Email" name="email" type="email"  class="validate" autocomplete="off" required>
             </div>
 
             <div class="clearfix"></div>

@@ -18,11 +18,11 @@ if(isset($_POST['post_upload']))
     $username = $_SESSION['username'];
     $caption = $_POST['caption'];
     $post_date = date("yy-m-d");
-    $upload_file = $_FILES['photo'];
-    $location = $upload_file['tmp_name'];
-    $name = $upload_file['name'];
+    $upload_file = $_FILES['photo'];//php function wgich can accept any type of file
+    $location = $upload_file['tmp_name']; //path define
+    $name = $upload_file['name']; 
     $url = "./images/posts/".$name;
-    move_uploaded_file($location, $url);
+    move_uploaded_file($location, $url); 
 
     $q = "INSERT INTO posts (user_id, user_email, user_name, caption, post_date, post_url) VALUES ('$user_id', '$user_email' , '$username', '$caption', '$post_date', '$url')"; 
     $query= mysqli_query($conn,$q);
@@ -54,9 +54,6 @@ if(isset($_POST['post_upload']))
 <div class="nav">
 <?php include 'navbar.php'; ?>
 </div>
-   
-        
-
     <div class="mt-4">
         <div class="container d-flex justify-content-center">
             <div class="col-9">
@@ -66,9 +63,9 @@ if(isset($_POST['post_upload']))
                         <!-- START OF STATUS -->
                         <!-- Start of post an content -->
                         <form method="post" action="home.php" enctype="multipart/form-data">
-                        <div class="main mainpost" style="margin-bottom:20px; padding-bottom:10px; width: 700px; margin-left: -70px;">    
+                          <div class="main mainpost" style="margin-bottom:20px; padding-bottom:10px; width: 700px; margin-left: -70px;">    
 
-                            <div class="userimg"><img src="../images/profile/upload.png"/>
+                            <div class="userimg"><img src="<?php echo $url;?>"/>
                             </div>
                             <div class="username">               <p class="name" style="top:15px;"><?php echo $_SESSION['fname']; ?></p>
                             </div>
@@ -111,7 +108,7 @@ if(isset($_POST['post_upload']))
                                 <div class="card-body p-0">
                                 <?php
                                  include 'connection.php';
-                                 $sql = "SELECT * from posts ORDER by post_id DESC limit 0,5";
+                                 $sql = "SELECT * from posts ORDER by post_id DESC limit 0,5"; //post id according descending
                                  $qu = mysqli_query($conn,$sql);
                                  while($roww=mysqli_fetch_array($qu)){
                                    $content=$roww['caption'];
@@ -245,9 +242,8 @@ if(isset($_POST['post_upload']))
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./js/main.js"></script>    
+    <script type="text/javascript" src="./js/main.js"></script> 
+       
 </body>
-
-
 
 </html>

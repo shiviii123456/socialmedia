@@ -72,7 +72,7 @@
       $username = $_POST['username'];
       $bio = $_POST['bio'];
       $phone = $_POST['phone'];
-      $sql= $query = "UPDATE users SET name='$fullname', user_name = '$username', bio = '$bio', phone = '$phone' WHERE user_id = '$id'";
+      $sql=  "UPDATE users SET name='$fullname', user_name = '$username', bio = '$bio', phone = '$phone' WHERE user_id = '$id'";
          $execute = mysqli_query($conn,$sql);
          if($execute)
          {

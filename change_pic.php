@@ -22,8 +22,8 @@
           <!--/stories-->
           <div class="row">    
             <br>
-				<?php
-	$query = $conn->query("select * from post LEFT JOIN members on members.member_id = post.member_id order by post_id DESC");
+				<?php      
+	$query = $conn->query("select * from post LEFT JOIN members on members.member_id = post.user_id order by post_id DESC");
 	while($row = $query->fetch()){
 	$posted_by = $row['firstname']." ".$row['lastname'];
 	$posted_image = $row['image'];
@@ -55,8 +55,7 @@
   </div>
 </div>
                                                 
-                                                                                
-<?php include('footer.php'); ?>
+                                                                              
         
     </body>
 </html>
