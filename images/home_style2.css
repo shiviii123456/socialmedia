@@ -1,0 +1,12 @@
+body{
+    overflow-x: hidden;
+}
+label{
+    padding:7px;
+    display: tabel;
+    color: #fff;
+
+}
+input[type='file']{
+    display:none;
+}
