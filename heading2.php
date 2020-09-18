@@ -25,8 +25,8 @@
 	<?php
 	if (isset($_POST['submit'])) {
  
-		$image = $_FILES['image']['tmp_name'];//sever pe file ka name
-        $image_name = $_FILES['image']['name'];//client machine ka name
+		$image = $_FILES['image']['tmp_name'];    //sever pe file ka name
+        $image_name = $_FILES['image']['name'];   //client machine ka name
         
 		move_uploaded_file($_FILES["image"]["tmp_name"], "images/".$_FILES["image"]["name"]);
 		$location = "images/".$_FILES["image"]["name"];

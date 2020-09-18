@@ -51,7 +51,7 @@ if(isset($_POST['post_upload']))
     <title>social media</title>
 </head>
 
-<body style="background-image:linear-gradient(grey,black);">
+<body >
         
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
   <div class="container" style="display:flex;">
@@ -89,15 +89,15 @@ if(isset($_POST['post_upload']))
 </header>
 
     <div class="mt-4">
-        <div class="container d-flex justify-content-center" style="padding: 50px 0 0 90px;">
+        <div class="container d-flex " style="padding: 50px 0 0 90px;" >
             <div class="col-9">
                 <div class="row">
                     <div class="col-8">
                         
                         <!-- START OF STATUS -->
                         <!-- Start of post an content -->
-                        <form method="post" action="home.php" enctype="multipart/form-data">
-                          <div class="main mainpost" style="margin-bottom:20px; padding-bottom:10px; width: 700px;">    
+                        <form method="post" action="home.php" enctype="multipart/form-data" >
+                          <div class="main mainpost" style="margin-bottom:20px; padding-bottom:10px; width: 700px; height: 200px;">    
 
                             <div class="userimg"><img src="<?php echo $_SESSION['user_url'];?>"/>
                             </div>
@@ -114,8 +114,8 @@ if(isset($_POST['post_upload']))
                             </div>
 
                             <div class="postbar">
-                                <input type="file" name="photo" accept="images/*" id="chooseimg" onchange="preview()"/>
-                                <button type="button" class="imgbttn" id="imgbttn">&#x1f4f7; Images</button>
+                                <input type="file" name="photo" accept="images/*" id="chooseimg" onchange="preview()" />
+                                <button type="button" class="imgbttn" id="imgbttn" style="float:left;">&#x1f4f7; Images</button>
                                 <button name="post_upload" type="submit" id="postmypost" class="postmypost">Post</button>
                             </div>
 
@@ -153,13 +153,13 @@ if(isset($_POST['post_upload']))
        echo" <div class='post'><img class='postimg' src='$imgg'/></div>";
        echo "</div>";
        echo " <div class='card-header p-3'>
-       <div class='d-flex flex-row align-items-center'>
+       <div class='d-flex flex-row '>
            <div
                class='rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3'>
                <img src='assets/images/profiles/profile-1.jpg' alt=''...
                    style='transform: scale(1.5); width: 100%; position: absolute; left: 0;'>
            </div>
-           <span style='font-weight:bold; color: white;' >$t</span>
+           <span style='font-weight:bold; color: black; float:left;' >$t</span>
        </div>";
 
      }

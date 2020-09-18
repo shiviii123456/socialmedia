@@ -32,6 +32,7 @@
 	$posted_by = $row['name'];
 	$posted_image = $row['url'];
 	$friend_id = $row['user_id'];
+
 	?>
             <div class="col-md-2 col-sm-3 text-center">
              <img  src="<?php echo $posted_image; ?>" style="width:100px;height:100px" class="img-circle"></a>
@@ -45,7 +46,8 @@
 								<input type="hidden" name="my_friend_id" value="<?php echo $friend_id; ?>">
 		<?php $query1 = $conn->query("select * from friends where my_friend_id = '$friend_id'");
 			  $count1 = mysqli_num_rows($query1);
-			  if ($count1 > 0){ echo 'All Ready Friend'; }else{
+			  if ($count1 > 0){ echo 'All Ready Friend'; }
+			  else{
 		?>	
 								<button  class="btn btn-info"><i class="icon-plus-sign"></i> Add as Friend</button>
 			<?php } ?>
@@ -55,7 +57,8 @@
               </div>
               <br><br>
             </div>
-	<?php } }else{ ?> &nbsp;&nbsp;&nbsp;&nbsp; No Result Found.  <?php } ?>		
+	<?php } }
+	else{ ?> &nbsp;&nbsp;&nbsp;&nbsp; No Result Found.  <?php } ?>		
           </div>
           <hr>
         </div>

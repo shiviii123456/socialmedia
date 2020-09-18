@@ -23,11 +23,10 @@
           <div class="row">    
             <br>
 				<?php
-	$query = $conn->query("select users.user_id , users.name, users.url , friends.friends_id   from users  , friends
+	$query = $conn->query("select users.user_id , users.name, users.url , friends.friends_id   from users ,friends
 	where friends.my_friend_id = '$session_id' and users.user_id = friends.my_id
-	OR friends.my_id = '$session_id' and users.user_id = friends.my_friend_id
-	");
-	while($row =mysqli_fetch_assoc($query)){
+	OR friends.my_id = '$session_id' and users.user_id = friends.my_friend_id");
+	while($row=mysqli_fetch_assoc($query)){
 	$friend_name = $row['name'];
 	$friend_image = $row['url'];
 	$id = $row['friends_id'];

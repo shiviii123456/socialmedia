@@ -21,12 +21,6 @@
 			<p>Bio:<?php echo $row['bio']; ?><span class="margin-p">
 
 		</div>
-      <!-- <div class="col-md-5">
-			<form method="post" action="post.php">
-						<textarea name="content" placeholder="Share your Story Here"></textarea>
-						<br>
-						<hr>
-						<button class="btn btn-success"><i class="icon-share"></i> Share </button>
-			</form> -->
+     
       </div>
     </div> 

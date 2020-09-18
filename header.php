@@ -10,3 +10,5 @@
 		<link href="css/my_style.css" type="text/css" rel="stylesheet">
 	</head>
 	<?php include('connection.php'); ?>
+
+    
