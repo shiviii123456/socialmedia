@@ -50,7 +50,7 @@
  
 		move_uploaded_file($_FILES["image"]["tmp_name"], "upload/" . $_FILES["image"]["name"]);
 		$location = "upload/" . $_FILES["image"]["name"];
-		$conn->query("insert into photos (location,member_id) values ('$location','$session_id')");
+		$conn->query("insert into photos (location,user_id) values ('$location','$session_id')");
 	?>
 	<script>
 		window.location = 'photos.php';
@@ -64,7 +64,7 @@
             <hr>
             <hr>
 				<?php
-	$query = $conn->query("select * from photos where member_id='$session_id'");
+	$query = $conn->query("select * from photos where user_id='$session_id'");
 	while($row =mysqli_fetch_assoc($query)){
 	$id = $row['photos_id'];
 	?>

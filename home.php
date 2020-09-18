@@ -1,6 +1,7 @@
 <?php
 include 'connection.php';
 include 'header.php';
+
 session_start();
 if (!isset($_SESSION['id'])){
 header('location:login.php');
@@ -11,20 +12,19 @@ $id=$_SESSION['id'];
 
 <?php
 if(isset($_POST['post_upload']))
-
   {
     $user_id = $_SESSION['id'];
     $user_email = $_SESSION['useremail'];
     $username = $_SESSION['username'];
     $caption = $_POST['caption'];
     $post_date = date("yy-m-d");
-    $upload_file = $_FILES['photo'];//php function wgich can accept any type of file
-    $location = $upload_file['tmp_name']; //path define
+    $upload_file = $_FILES['photo']; //php function wgich can accept any type of file
+    $location = $upload_file['tmp_name'];  //path define
     $name = $upload_file['name']; 
-    $url = "./images/posts/".$name;
+    $url = "./images/posts/".$name; 
     move_uploaded_file($location, $url); 
 
-    $q = "INSERT INTO posts (user_id, user_email, user_name, caption, post_date, post_url) VALUES ('$user_id', '$user_email' , '$username', '$caption', '$post_date', '$url')"; 
+    $q = "INSERT INTO posts(user_id, user_email, user_name, caption, post_date, post_url) VALUES ('$user_id', '$user_email' , '$username', '$caption', '$post_date', '$url')"; 
     $query= mysqli_query($conn,$q);
     if($query){
         echo "<script> alert('success'); </script>";
@@ -40,22 +40,56 @@ if(isset($_POST['post_upload']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">  -->
     <script src="https://kit.fontawesome.com/d3d6f2df1f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="headerr.css">
+     <link rel="stylesheet" href="home.css"> 
+     <link rel="stylesheet" href="./css/my_style.css"> 
 
-    <title>Document</title>
+    <title>social media</title>
 </head>
 
-<body>
-<div class="nav">
-<?php include 'navbar.php'; ?>
-</div>
+<body style="background-image:linear-gradient(grey,black);">
+        
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+  <div class="container" style="display:flex;">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="home.php" class="navbar-brand"><i class="icon-home"></i> Home</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <div class="ultags">
+      <ul class="nav navbar-nav">
+        <li><a href="profile.php"><i class="icon-user"></i> Profile</a></li>
+        <li><a href="photos.php"><i class="icon-picture"></i> Posts</a></li>
+        <li><a href="friends.php"><i class="icon-group"></i> Friends</a></li>
+		
+        </li>
+        <li>
+          <a href="logout.php"><i class="icon-signout"></i> Logout</a>
+        </li>
+      </ul>
+      </div>
+  
+		<!-- <div class="pull-right">
+            <form class="form-inline" method="post" action="search.php">
+             <input type="text" name="search" class="form-control"  id="span5" placeholder="Search">
+            </form>
+		</div>
+    -->
+      </nav>
+  </div>
+</header>
+
     <div class="mt-4">
-        <div class="container d-flex justify-content-center">
+        <div class="container d-flex justify-content-center" style="padding: 50px 0 0 90px;">
             <div class="col-9">
                 <div class="row">
                     <div class="col-8">
@@ -63,17 +97,17 @@ if(isset($_POST['post_upload']))
                         <!-- START OF STATUS -->
                         <!-- Start of post an content -->
                         <form method="post" action="home.php" enctype="multipart/form-data">
-                          <div class="main mainpost" style="margin-bottom:20px; padding-bottom:10px; width: 700px; margin-left: -70px;">    
+                          <div class="main mainpost" style="margin-bottom:20px; padding-bottom:10px; width: 700px;">    
 
-                            <div class="userimg"><img src="<?php echo $url;?>"/>
+                            <div class="userimg"><img src="<?php echo $_SESSION['user_url'];?>"/>
                             </div>
-                            <div class="username">               <p class="name" style="top:15px;"><?php echo $_SESSION['fname']; ?></p>
+                            <div class="username">               <p class="name" style="top:15px; font-weight:bold; color: black;"><?php echo $_SESSION['fname']; ?></p>
                             </div>
                             <p class="quotes">
                                 <textarea id="mypara" name="caption" placeholder="Share an article ,photo ,video or idea."></textarea>
                             </p>
                             <!-- image load to post -->
-                            <div class="post d-none" id="post_preview">
+                            <div class="post " id="post_preview" style="display: none;">
                                 <div id="preview_div">
                                     
                                 </div>
@@ -91,38 +125,53 @@ if(isset($_POST['post_upload']))
                         <!-- END OF STATUS -->
 
                         <!-- START OF POSTS -->
-
                         <div class="d-flex flex-column mt-4 mb-4">
 
-                            <div class="card" style="width: 700px; margin-left: -70px;">
-                                <div class="card-header p-3">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <div
-                                            class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                            <img src="assets/images/profiles/profile-1.jpg" alt="..."
-                                                style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
-                                        </div>
-                                        <span class="font-weight-bold"><?php echo $_SESSION['fname']; ?></span>
-                                    </div>
-                                </div>
-                                <div class="card-body p-0">
-                                <?php
-                                 include 'connection.php';
-                                 $sql = "SELECT * from posts ORDER by post_id DESC limit 0,5"; //post id according descending
-                                 $qu = mysqli_query($conn,$sql);
-                                 while($roww=mysqli_fetch_array($qu)){
-                                   $content=$roww['caption'];
-                                   $imgg = $roww['post_url'];
-                                   echo "<div class='mainpost'>";
-                                   echo "<p class='quotes'>.$content.</p>";
-                                   echo" <div class='post'><img class='postimg' src='$imgg'/></div>";
-                                   echo "</div>";
+ <div class='card' style='width: 700px;'>
+    <div class='card-header p-3'>
+        <div class='d-flex flex-row align-items-center'>
+            <div
+                class='rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3'>
+                <img src='' alt=''...
+                    style='transform: scale(1.5); width: 100%; position: absolute; left: 0;'>
+            </div>
+            <span class='font-weight-bold'></span>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+    <?php
+     include 'connection.php';
+     $sql = "SELECT * from posts ORDER by post_id DESC limit 0,5";
+     $qu = mysqli_query($conn,$sql);
+     while($roww=mysqli_fetch_array($qu)){
+       $t= $_SESSION['fname'];
+       $content=$roww['caption'];
+       $imgg = $roww['post_url'];
+       echo "<div class='mainpost'>";
+       echo "<p class='quotes'>$content</p>";
+       echo" <div class='post'><img class='postimg' src='$imgg'/></div>";
+       echo "</div>";
+       echo " <div class='card-header p-3'>
+       <div class='d-flex flex-row align-items-center'>
+           <div
+               class='rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3'>
+               <img src='assets/images/profiles/profile-1.jpg' alt=''...
+                   style='transform: scale(1.5); width: 100%; position: absolute; left: 0;'>
+           </div>
+           <span style='font-weight:bold; color: white;' >$t</span>
+       </div>";
+
+     }
 
 
-                                 }
+     ?>
+        
 
-
-                                 ?>
+</div>
+                        
+                                 
+                        
                                     
 
                                     <!-- posted content view -->

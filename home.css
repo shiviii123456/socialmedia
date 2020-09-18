@@ -18,11 +18,6 @@ button {
     font-family: Fontin, Arial, Verdana;
     font-size: 18px;
 }
-
-input[type=radio] {
-    width: auto;
-}
-
 textarea {
     width: 100%;
 }
@@ -30,6 +25,7 @@ textarea {
 ul {
     list-style: none;
 }
+
 
 #preview_div{
    margin: 0 auto;
@@ -59,7 +55,7 @@ span {
 
 /*============== NAVBAR SETTINGS ============*/
 
-.usernav {
+/* .usernav {
     background-color: #4267b2;
     overflow: auto;
 }
@@ -87,41 +83,6 @@ span {
 
 /* Search */
 
-.usernav .globalsearch {
-    margin: 0;
-    width: 60%;
-    background-color: #4267b2;
-}
-
-.usernav .globalsearch input[type=text] {
-    border: none;
-    width: auto;
-    padding: 2px 6px;
-}
-
-.usernav .globalsearch input[type=submit] {
-    background-color: #e9ebee;
-    color: #23385f;
-    border: none;
-    margin: 5px 5px 5px 0;
-    padding: 2px 6px;
-    width: auto;
-}
-
-.usernav .globalsearch input[type=submit]:hover {
-    background-color: #23385f;
-    color: white;
-}
-
-.usernav .globalsearch select {
-    font-family: Fontin;
-    font-size: 18px;
-    margin-left: 5px;
-    padding: 0.9px 0px;
-    vertical-align: -1px;
-}
-
-
 /*============== POSTS SETTINGS ============*/
 
 
@@ -136,8 +97,6 @@ span {
     padding: 10px 16px;
     overflow: auto;
 }
-
-
 /* Create Post Control */
 
 .createpostbuttons {

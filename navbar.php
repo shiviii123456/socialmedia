@@ -11,23 +11,24 @@
       <a href="home.php" class="navbar-brand"><i class="icon-home"></i> Home</a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
+      <div class="ultags">
       <ul class="nav navbar-nav">
         <li><a href="profile.php"><i class="icon-user"></i> Profile</a></li>
-        <li><a href="photos.php"><i class="icon-picture"></i> Photos</a></li>
+        <li><a href="photos.php"><i class="icon-picture"></i> Posts</a></li>
         <li><a href="friends.php"><i class="icon-group"></i> Friends</a></li>
-		<li><a href="message.php"><i class="icon-group"></i> Message</a>
+	
         </li>
         <li>
           <a href="logout.php"><i class="icon-signout"></i> Logout</a>
         </li>
       </ul>
+      </div>
   
 		<div class="pull-right">
             <form class="form-inline" method="post" action="search.php">
              <input type="text" name="search" class="form-control"  id="span5" placeholder="Search">
             </form>
 		</div>
-   
-    </nav>
+      </nav>
   </div>
 </header>

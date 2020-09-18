@@ -25,13 +25,13 @@
             <br>
 	<?php
 	
-	$query = $conn->query("select  * from members where firstname LIKE '%$search%' or lastname  LIKE '%$search%'");
+	$query = $conn->query("select  * from users where name LIKE '%$search%' ");
 	$count = mysqli_num_rows($query);
 	if ($count > 0){ 
 	while($row = mysqli_fetch_assoc($query)){
-	$posted_by = $row['firstname']." ".$row['lastname'];
-	$posted_image = $row['image'];
-	$friend_id = $row['member_id'];
+	$posted_by = $row['name'];
+	$posted_image = $row['url'];
+	$friend_id = $row['user_id'];
 	?>
             <div class="col-md-2 col-sm-3 text-center">
              <img  src="<?php echo $posted_image; ?>" style="width:100px;height:100px" class="img-circle"></a>
@@ -63,6 +63,6 @@
    	</div><!--/col-12-->
   </div>
 </div>
-<?php include('footer.php'); ?>
+
     </body>
 </html>

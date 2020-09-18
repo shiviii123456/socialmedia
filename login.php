@@ -4,11 +4,12 @@ include 'connection.php';
   {
     $useremail = $_POST['useremail'];
     $password = $_POST['password'];
+
     $password=md5($password);
 
     $usersearch ="select * from users where user_email= '$useremail' AND password='$password' ";
     $query= mysqli_query($conn,$usersearch);
-    if( mysqli_num_rows($query) !=0)
+    if(mysqli_num_rows($query) !=0)
     {
       $row = mysqli_fetch_assoc($query);
       session_start();
@@ -22,7 +23,7 @@ include 'connection.php';
     }
     else
     {
-        echo "invalid useremail";
+        echo "invalid useremail or password";
       }
   }
 ?>

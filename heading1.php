@@ -1,7 +1,8 @@
+
     <div class="row">
       <div class="col-md-2">
 		<hr>
-		<center><img class="pp" src="<?php echo $image; ?>" height="140" width="160"></center>
+		<center><img class="pp" src="<?php echo $_SESSION['user_url'];?>" height="140" width="160"></center>
 		<hr>
 		<a class="btn btn-success" href="change_pic.php">Change Profile Picture</a>
       </div>
@@ -12,26 +13,19 @@
 			
 			</p>
 				<?php
-			$query = $conn->query("select * from members where member_id = '$session_id'");
+			$query = $conn->query("select * from users where user_id = '$session_id'");
 			$row = mysqli_fetch_assoc($query);
-			$id = $row['member_id'];
+			$id = $row['user_id'];
 			?>
 			<hr>
-			<p>Name:<?php echo $row['firstname']." ".$row['lastname']; ?><span class="margin-p"> </span>Gender:<?php echo $row['gender']; ?></p>
-			<hr>
-			<p>Address:<?php echo $row['address']; ?></p>
-			<hr>
-			<p>Gender:<?php echo $row['gender']; ?></p>
+			<p>Name:<?php echo $row['name']; ?><span class="margin-p"> 
+		
 						<hr>
-			<p>Birthdate:<?php echo $row['birthdate']; ?></p>
+			<p>Contact No:<?php echo $row['phone']; ?></p>
+				
 						<hr>
-			<p>Contact No:<?php echo $row['mobile']; ?></p>
-						<hr>
-			<p>Status:<?php echo $row['status']; ?></p>
-						<hr>
-				<p>Work:<?php echo $row['work']; ?></p>
-			<hr>
-				<p>Religion:<?php echo $row['religion']; ?></p>
+				<p>Bio:<?php echo $row['bio']; ?></p>
+			
 		</div>
 
     </div> 

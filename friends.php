@@ -1,11 +1,10 @@
-
 <?php include('header.php'); ?>    
 <?php include('session.php'); ?>    
-    <body>
+<body>
 	<?php include('navbar.php'); ?>
 			<div id="masthead">  
 				<div class="container">
-					<?php include('heading.php'); ?>
+				
 				</div><!-- /cont -->
 				<div class="container">
 					<div class="row">
@@ -24,20 +23,20 @@
           <div class="row">    
             <br>
 				<?php
-	$query = $conn->query("select members.member_id , members.firstname , members.lastname , members.image , friends.friends_id   from members  , friends
-	where friends.my_friend_id = '$session_id' and members.member_id = friends.my_id
-	OR friends.my_id = '$session_id' and members.member_id = friends.my_friend_id
+	$query = $conn->query("select users.user_id , users.name, users.url , friends.friends_id   from users  , friends
+	where friends.my_friend_id = '$session_id' and users.user_id = friends.my_id
+	OR friends.my_id = '$session_id' and users.user_id = friends.my_friend_id
 	");
-	while($row = mysqli_fetch_assoc($query)){
-	$friend_name = $row['firstname']." ".$row['lastname'];
-	$friend_image = $row['image'];
+	while($row =mysqli_fetch_assoc($query)){
+	$friend_name = $row['name'];
+	$friend_image = $row['url'];
 	$id = $row['friends_id'];
 	?><div class="row">    
             <div class="col-md-2 text-center">
              <img  src="<?php echo $friend_image; ?>" style="width:100px;height:100px" class="img-circle"></a>
             </div>
 				<div class="col-md-10">
-					<div class="pull-right"><a href="delete_friend.php<?php echo '?id='.$id; ?>" class="btn btn-danger"><i class="icon-remove"></i>  Unfriend </a></div>
+					<div class="pull-right"><a href="deletefrnd.php<?php echo '?id='.$id; ?>" class="btn btn-danger"><i class="icon-remove"></i>  Unfriend </a></div>
 					<div class="alert"><?php echo $friend_name; ?></div>
 				</div>
             </div>
@@ -55,27 +54,10 @@
   </div>
 </div>
                                                                                                              
+
+        
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

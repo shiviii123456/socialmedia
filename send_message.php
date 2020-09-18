@@ -1,5 +1,5 @@
 <?php
-include('dbcon.php');
+include('connection.php');
 include('session.php');
 $friend_id  = $_POST['friend_id'];
 $my_message  = $_POST['my_message'];

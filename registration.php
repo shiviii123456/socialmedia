@@ -1,6 +1,6 @@
 <?php
 include 'connection.php';
-if (isset($_POST['register'])) {
+if(isset($_POST['register'])){
         $name = $_POST['name'];
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -10,7 +10,7 @@ if (isset($_POST['register'])) {
         $pass = md5($password);
         $cnfpass=md5($cnfpassword);
 
-        $emailquery = " select * from users where user_email='$email' ";
+        $emailquery = "select * from users where user_email='$email' ";
         $query = mysqli_query($conn,$emailquery);
         $emailcount=mysqli_num_rows($query);
         if($emailcount>0){
@@ -23,9 +23,9 @@ if (isset($_POST['register'])) {
            if(preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $email)){
            if($pass === $cnfpass){
             if(strlen($password)>=4 && strlen($cnfpassword)<=8){
-         $sql = "insert into users(name,user_name, user_email, password, confirmpassword) values(' $name','  $username','$email','$pass','  $cnfpass')";       
-         $execute= mysqli_query($conn,$sql);
-         if($execute)
+          $sql = "insert into users(name,user_name, user_email, password, confirmpassword) values('$name','$username','$email','$pass','  $cnfpass')";       
+          $execute= mysqli_query($conn,$sql);
+          if($execute)
          {
             ?>
             <script>alert("inserted successfully");</script>
@@ -79,7 +79,7 @@ if (isset($_POST['register'])) {
             <i>Register
         </div>
 
-        <form action="registration.php" method="post">
+        <form  action="registration.php"  method="post">
             <div class="input">
                 <div class="input-addon">
                     <i class="material-icons">face</i>
