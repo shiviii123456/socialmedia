@@ -47,6 +47,8 @@ if(isset($_POST['post_upload']))
     <link rel="stylesheet" href="headerr.css">
      <link rel="stylesheet" href="home.css"> 
      <link rel="stylesheet" href="./css/my_style.css"> 
+    
+     
 
     <title>social media</title>
 </head>
@@ -107,12 +109,7 @@ if(isset($_POST['post_upload']))
                                 <textarea id="mypara" name="caption" placeholder="Share an article ,photo ,video or idea."></textarea>
                             </p>
                             <!-- image load to post -->
-                            <div class="post " id="post_preview" style="display: none;">
-                                <div id="preview_div">
-                                    
-                                </div>
-                            </div>
-
+                    
                             <div class="postbar">
                                 <input type="file" name="photo" accept="images/*" id="chooseimg" onchange="preview()" />
                                 <button type="button" class="imgbttn" id="imgbttn" style="float:left;">&#x1f4f7; Images</button>
@@ -125,95 +122,71 @@ if(isset($_POST['post_upload']))
                         <!-- END OF STATUS -->
 
                         <!-- START OF POSTS -->
-                        <div class="d-flex flex-column mt-4 mb-4">
-
- <div class='card' style='width: 700px;'>
-    <div class='card-header p-3'>
-        <div class='d-flex flex-row align-items-center'>
-            <div
-                class='rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3'>
-                <img src='' alt=''...
-                    style='transform: scale(1.5); width: 100%; position: absolute; left: 0;'>
-            </div>
-            <span class='font-weight-bold'></span>
-        </div>
-    </div>
-
-    <div class="card-body p-0">
+                        
     <?php
      include 'connection.php';
-     $sql = "SELECT * from posts ORDER by post_id DESC limit 0,5";
-     $qu = mysqli_query($conn,$sql);
-     while($roww=mysqli_fetch_array($qu)){
-       $t= $_SESSION['fname'];
-       $content=$roww['caption'];
+
+     $sql="SELECT posts.caption,posts.post_url,posts.user_name,posts.user_id,posts.post_id FROM posts INNER JOIN friends ON posts.user_id=friends.my_id OR posts.user_id=friends.my_friend_id WHERE posts.user_id='{$id}' OR friends.my_id='{$id}' OR friends.my_friend_id='{$id}' GROUP BY posts.post_id ORDER BY posts.post_id DESC LIMIT 0,16";
+     
+     $execute=mysqli_query($conn,$sql);
+
+     while($roww=mysqli_fetch_array($execute))
+     {
+    $idd=$roww['user_id'];
+    $postid=$roww['post_id'];
+      $content=$roww['caption'];
        $imgg = $roww['post_url'];
-       echo "<div class='mainpost'>";
-       echo "<p class='quotes'>$content</p>";
-       echo" <div class='post'><img class='postimg' src='$imgg'/></div>";
-       echo "</div>";
-       echo " <div class='card-header p-3'>
-       <div class='d-flex flex-row '>
+       $name =$roww['user_name'];
+        $sqll=mysqli_query($conn,"SELECT * FROM users WHERE user_id='$idd'");
+        $results=mysqli_fetch_array($sqll);
+        $url=$results['url'];
+
+       echo " <div class='d-flex flex-column mt-4 mb-4'>
+       <div class='card' style='width: 700px;'>
+        <div class='card-header p-3'>
+        <div class='d-flex flex-row'>
            <div
                class='rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3'>
-               <img src='assets/images/profiles/profile-1.jpg' alt=''...
+               <img src=$url alt=''...
                    style='transform: scale(1.5); width: 100%; position: absolute; left: 0;'>
            </div>
-           <span style='font-weight:bold; color: black; float:left;' >$t</span>
-       </div>";
+           <span style='font-weight:bold; color: black; float:left;'>$name</span>
+       </div>
+       </div>
+       <div class='card-body p-0'>
+       <div class='allpost'>
+       <div class='mainpost'>
+       <p class='quotes'>$content</p>
+       <div class='post'><img class='postimg' src='$imgg'/></div>
+       
 
-     }
-
-
+       <div class='likedislike'>
+       <p class='like'>
+           <span class='' id='like1'>0 </span> likes &nbsp <span class='noofdislike' id='dislike1'>0 </span> dislikes
+       </p>
+       <p class='likedisbttn'>
+           <span id='thumbsup1' class='fa fa-thumbs-up' onclick='increase('like1','dislike1','thumbsup1','thumbsdown1');'></span> <span id='thumbsdown1' class='fa fa-thumbs-down' onclick='decrease('like1','dislike1','thumbsup1','thumbsdown1');'></span>
+       </p>
+       <p class='like'>
+           <span class='nooflike' id='like1'>0 </span> Comments</span>
+       </p>
+       </div>
+      </div>
+     </div>
+     </div>
+     </div>
+     </div>
+     ";
+       }
+     
      ?>
-        
+     	 
 
-</div>
-                        
-                                 
-                        
-                                    
-
-                                    <!-- posted content view -->
-                                    <div class="allpost">
-                                    <!-- post 1 by creator-->
-                                        <div class="mainpost">
-                        
-                                            <p class="quotes">
-                                            </p>
-                                        <div class="post">
-                                            <img class="postimg" src=""/>
-                                        </div>
-
-                                        <div class="likedislike">
-                                            <p class="like">
-                                                <span class="nooflike" id="like1">0 </span> likes &nbsp <span class="noofdislike" id="dislike1">0 </span> dislikes
-                                            </p>
-                                            <p class="likedisbttn">
-                                                <span id="thumbsup1" class="fa fa-thumbs-up" onclick="increase('like1','dislike1','thumbsup1','thumbsdown1');"></span> <span id="thumbsdown1" class="fa fa-thumbs-down" onclick="decrease('like1','dislike1','thumbsup1','thumbsdown1');"></span>
-                                            </p>
-                                            <p class="like">
-                                                <span class="nooflike" id="like1">0 </span> Comments</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                <!-- end of post 1 by creator -->
-                                </div>
-                                <!-- end of posted content view -->
+          <!-- end of posted content view -->
 
                                 <!-- button to view more previous post -->
-                                <!-- <button type="button" id="viewmore" class="viewmore" onclick="newpost();">View More</button> -->
-
-                                    
-
-
-                            </div>
-                            </div>
-
-                        </div>
-                        <!-- END OF POSTS -->
-                    </div>
-                    <!-- RIGHT SIDE START
+                                <!-- <button type="button" id="viewmore" class="viewmore" onclick="newpost();">View More</bu>
+                     RIGHT SIDE START
                     <div class="col-4">
                         <div class="d-flex flex-row align-items-center" >
                             <div

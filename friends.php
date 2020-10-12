@@ -22,7 +22,8 @@
           <!--/stories-->
           <div class="row">    
             <br>
-				<?php
+	<?php
+
 	$query = $conn->query("select users.user_id , users.name, users.url , friends.friends_id   from users ,friends
 	where friends.my_friend_id = '$session_id' and users.user_id = friends.my_id
 	OR friends.my_id = '$session_id' and users.user_id = friends.my_friend_id");
@@ -30,7 +31,9 @@
 	$friend_name = $row['name'];
 	$friend_image = $row['url'];
 	$id = $row['friends_id'];
-	?><div class="row">    
+
+	?>
+	<div class="row">    
             <div class="col-md-2 text-center">
              <img  src="<?php echo $friend_image; ?>" style="width:100px;height:100px" class="img-circle"></a>
             </div>
@@ -41,7 +44,9 @@
             </div>
 			<hr>
 			<br><br>
-	<?php } ?>		
+	<?php
+	 }
+	 ?>		
           </div>
           <hr>
         </div>
